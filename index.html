@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--navy:#0A1628;--navy2:#0F1F38;--navy3:#162848;
+--orange:#E8500A;--orange2:#FF6B2B;--orange3:#FF8C5A;
+--silver:#8899AA;--silver2:#B8C8D8;--silver3:#E8EFF5;
+--white:#FFFFFF;--text1:#0A1628;--text2:#2A3F5F;--text3:#5A7090;
+--accent:#FF6B2B;--metal:#C8D8E8;
+}
+body{font-family:'DM Sans',sans-serif;background:#0A1628;color:#fff;overflow-x:hidden;scroll-behavior:smooth}
+
+html{scroll-behavior:smooth}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:#0A1628}
+::-webkit-scrollbar-thumb{background:#E8500A;border-radius:2px}
+
+/* NAV */
+#nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  background:rgba(10,22,40,0.55);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(232,80,10,0.2);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 4%;
+  height:68px;
+}
+.nlogo{display:flex;align-items:center;gap:14px;text-decoration:none}
+.nlogo-icon{width:220px;height:56px;background:transparent;border:none;border-radius:0;display:flex;align-items:center;justify-content:flex-start;position:relative;overflow:hidden;flex-shrink:0;box-shadow:none}
+.nlogo-icon img{width:100%;height:100%;object-fit:contain;object-position:left center;display:block}
+.nlogo-copy{display:flex;flex-direction:column;justify-content:center;gap:2px}
+.nlogo-name{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;letter-spacing:2.8px;color:#F7FAFC;text-transform:uppercase;text-shadow:0 4px 16px rgba(0,0,0,0.18)}
+.nlogo-tag{font-family:'Space Mono',monospace;font-size:9px;line-height:1;letter-spacing:4px;color:#FF6B2B;text-transform:uppercase}
+.nlinks{display:flex;list-style:none;gap:2px}
+.nlinks a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:8px 14px;border-radius:4px;transition:all 0.2s;font-family:'Space Mono',monospace}
+.nlinks a:hover{color:#fff;background:rgba(232,80,10,0.15)}
+.nav-cta{background:#E8500A!important;color:#fff!important;border-radius:4px!important}
+.nav-cta:hover{background:#FF6B2B!important}
+.nav-admin-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7)!important;font-size:10px!important;padding:6px 12px!important;border-radius:4px!important;cursor:pointer;margin-left:8px}
+.nav-admin-btn:hover{background:rgba(255,255,255,0.12)!important;color:#fff!important}
+
+/* HERO */
+#home{min-height:100vh;background:#0A1628;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:68px}
+.hero-factory-bg{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(255,107,43,0.24), transparent 28%),
+    linear-gradient(110deg, rgba(4,10,20,0.96) 0%, rgba(8,18,34,0.92) 28%, rgba(8,18,34,0.76) 48%, rgba(8,18,34,0.38) 68%, rgba(8,18,34,0.12) 100%),
+    url('assets/factory.jpg') center/cover no-repeat;
+  z-index:0;
+  animation: heroZoom 18s ease-in-out infinite alternate;
+}
+.hero-factory-bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to top, rgba(10,22,40,0.8), transparent 42%),
+    linear-gradient(to right, rgba(10,22,40,0.18), transparent 35%);
+}
+.hero-grid-pattern{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:88px 88px;mask-image:linear-gradient(to right, rgba(0,0,0,0.12), rgba(0,0,0,0.85) 52%, transparent 100%);animation:gridMove 30s linear infinite}
+@keyframes heroZoom{
+  0%{background-size:100%}
+  100%{background-size:110%}
+}
+.hero-vstrip{position:absolute;left:8%;top:0;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(232,80,10,0.65),transparent)}
+.hero-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:72px 4% 56px;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.72fr);gap:56px;align-items:end;width:100%}
+.hero-copy{max-width:640px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(232,80,10,0.12);border:1px solid rgba(232,80,10,0.34);padding:8px 16px;border-radius:999px;margin-bottom:26px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2.5px;color:#FF8C5A;text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,0.16)}
+.hero-dot{width:6px;height:6px;background:#E8500A;border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{text-shadow:0 10px 32px rgba(0,0,0,0.38);font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,8vw,98px);line-height:0.9;letter-spacing:1.8px;color:#fff;margin-bottom:24px}
+.hero h1 .hl{color:#E8500A;display:block}
+.hero h1 .thin{font-family:'DM Sans',sans-serif;font-weight:400;font-size:0.24em;letter-spacing:7px;color:rgba(255,255,255,0.62);display:block;margin-bottom:12px;text-transform:uppercase}
+.hero-desc{
+  font-size:15px;
+  line-height:1.9;
+  color:rgba(255,255,255,0.8);
+  margin-bottom:18px;
+  max-width:560px;
+  text-shadow:0 2px 10px rgba(0,0,0,0.55);
+}
+.hero-prompt-note{font-family:'Space Mono',monospace;font-size:10px;line-height:1.8;letter-spacing:1.2px;color:rgba(255,255,255,0.48);text-transform:uppercase;max-width:620px;margin-bottom:34px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:38px}
+.btn-primary{background:#E8500A;color:#fff;text-decoration:none;padding:14px 32px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;border-radius:3px;transition:all 0.25s;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:'Space Mono',monospace}
+.btn-primary:hover{background:#FF6B2B;transform:translateY(-2px)}
+.btn-outline{border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.7);text-decoration:none;padding:14px 32px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;border-radius:3px;transition:all 0.25s;display:inline-flex;align-items:center;gap:8px;background:transparent;cursor:pointer;font-family:'Space Mono',monospace}
+.btn-outline:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,0.05)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;backdrop-filter:blur(12px)}
+.hstat{padding:18px 16px;background:rgba(7,15,27,0.86)}
+.hstat-n{font-family:'Bebas Neue',sans-serif;font-size:36px;color:#E8500A;line-height:1}
+.hstat-l{font-size:9px;color:rgba(255,255,255,0.45);letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;font-family:'Space Mono',monospace}
+
+/* hero right panel */
+.hero-right{display:grid;gap:14px}
+.hero-panel{background:rgba(7,15,27,0.62);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:22px;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s;backdrop-filter:blur(16px);box-shadow:0 18px 40px rgba(0,0,0,0.18)}
+.hero-panel:hover{border-color:rgba(232,80,10,0.35);transform:translateY(-2px)}
+.hero-panel::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:#E8500A}
+.hp-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#E8500A;text-transform:uppercase;margin-bottom:8px}
+.hp-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px}
+.hp-desc{font-size:12px;color:rgba(255,255,255,0.56);line-height:1.7}
+.hero-ops{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ops-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:18px}
+.ops-value{font-family:'Bebas Neue',sans-serif;font-size:34px;line-height:1;color:#fff;letter-spacing:1px}
+.ops-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.6px;color:#FF8C5A;text-transform:uppercase;margin-top:6px}
+.ops-sub{font-size:11px;line-height:1.6;color:rgba(255,255,255,0.44);margin-top:6px}
+.hero-image-card{position:relative;min-height:260px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.11);box-shadow:0 24px 42px rgba(0,0,0,0.22)}
+.hero-image-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(7,15,27,0.08) 0%, rgba(7,15,27,0.52) 100%),
+    linear-gradient(90deg, rgba(7,15,27,0.1) 0%, rgba(7,15,27,0.2) 100%),
+    url('assets/factory.jpg') center/cover no-repeat;
+  transform:scale(1.04);
+}
+.hero-image-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(6,14,26,0.84), transparent 46%);
+}
+.hero-image-caption{position:absolute;left:20px;right:20px;bottom:18px;z-index:1;display:block}
+.hero-image-caption strong{display:block;font-size:14px;letter-spacing:.4px;color:#fff;margin-bottom:4px}
+.hero-image-caption span{display:block;font-size:10px;font-family:'Space Mono',monospace;letter-spacing:1.4px;color:rgba(255,255,255,0.52);text-transform:uppercase}
+
+/* SECTIONS */
+section{padding:96px 4%}
+.container{max-width:1280px;margin:0 auto}
+.s-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#E8500A;text-transform:uppercase;display:block;margin-bottom:12px}
+.s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,62px);line-height:0.95;color:#fff;letter-spacing:1px;margin-bottom:18px}
+.s-title.dark{color:#0A1628}
+.s-bar{width:40px;height:2px;background:#E8500A;margin-bottom:22px}
+.s-desc{font-size:15px;line-height:1.85;color:rgba(255,255,255,0.6);max-width:580px}
+.s-desc.dark{color:#5A7090}
+
+/* ABOUT */
+#about{background:#0F1F38}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.about-deco{font-family:'Bebas Neue',sans-serif;font-size:160px;color:rgba(255,255,255,0.03);line-height:1;margin-bottom:-30px;letter-spacing:5px}
+.about-text{font-size:14px;line-height:1.9;color:rgba(255,255,255,0.6);margin-bottom:16px}
+.about-pull{border-left:2px solid #E8500A;padding-left:20px;margin:28px 0}
+.about-pull p{font-size:17px;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.6}
+.leader-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:22px;border-radius:4px;display:flex;gap:16px;align-items:center;margin-top:28px}
+.leader-av{width:56px;height:56px;background:#E8500A;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:20px;color:#fff;flex-shrink:0}
+.leader-name{font-size:15px;font-weight:600;color:#fff}
+.leader-role{font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px}
+
+.fact-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.fact-table td{padding:11px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.fact-table td:first-child{color:rgba(255,255,255,0.4);width:45%;font-size:11px;letter-spacing:.5px;font-family:'Space Mono',monospace}
+.fact-table td:last-child{color:#fff;font-weight:500}
+.mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
+.mv{border:1px solid rgba(255,255,255,0.06);padding:20px;border-radius:4px;border-top:2px solid #E8500A;background:rgba(255,255,255,0.02)}
+.mv h3{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;margin-bottom:8px;letter-spacing:1px}
+.mv p{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:rgba(232,80,10,0.1);border:1px solid rgba(232,80,10,0.2);color:#E8500A;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:2px;font-family:'Space Mono',monospace}
+
+/* CAPABILITIES STRIP */
+#capabilities{background:#0A1628;padding:72px 4%}
+.cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin-top:48px}
+.cap-card{background:#0A1628;padding:32px 24px;transition:background 0.3s;position:relative;overflow:hidden}
+.cap-card::after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:#E8500A;transform:scaleX(0);transition:transform 0.3s;transform-origin:left}
+.cap-card:hover::after{transform:scaleX(1)}
+.cap-card:hover{background:rgba(232,80,10,0.04)}
+.cap-icon{width:44px;height:44px;background:rgba(232,80,10,0.12);border:1px solid rgba(232,80,10,0.2);border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.cap-icon svg{width:20px;height:20px;fill:#E8500A}
+.cap-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;letter-spacing:1px;margin-bottom:8px}
+.cap-desc{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.65}
+
+/* PRODUCTS */
+#products{background:#0F1F38}
+.prod-header{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
+.prod-feat-list{display:flex;flex-direction:column;gap:12px}
+.pf{display:flex;gap:12px;align-items:flex-start;padding:16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:4px}
+.pf-dot{width:8px;height:8px;background:#E8500A;border-radius:50%;margin-top:5px;flex-shrink:0}
+.pf-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:2px}
+.pf-desc{font-size:11px;color:rgba(255,255,255,0.45);line-height:1.5}
+.prod-models{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid rgba(255,255,255,0.1);border-radius:4px;overflow:hidden}
+.mc{background:#0A1628;border-right:1px solid rgba(255,255,255,0.08);transition:all 0.3s;position:relative}
+.mc:last-child{border-right:none}
+.mc:hover{background:rgba(232,80,10,0.04)}
+.mc-head{padding:28px 24px;background:#0F1F38;position:relative;overflow:hidden}
+.mc-head.featured{background:#E8500A}
+.mc-head::before{content:"";position:absolute;right:-20px;bottom:-20px;width:80px;height:80px;border:1px solid rgba(255,255,255,0.08);border-radius:50%}
+.mc-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.4);margin-bottom:8px;text-transform:uppercase}
+.mc-model{font-family:'Bebas Neue',sans-serif;font-size:44px;color:#fff;line-height:1;letter-spacing:2px}
+.mc-sub{font-size:10px;color:rgba(255,255,255,0.5);margin-top:6px;line-height:1.4}
+.mc-body{padding:24px}
+.mc-desc{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:16px}
+.mc-feats{list-style:none}
+.mc-feats li{font-size:11px;color:rgba(255,255,255,0.5);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.mc-feats li::before{content:"";width:5px;height:5px;background:#E8500A;border-radius:50%;margin-top:4px;flex-shrink:0}
+.mc-badge{margin-top:16px;display:inline-block;background:rgba(232,80,10,0.1);color:#E8500A;font-size:9px;font-weight:600;padding:4px 10px;border-radius:2px;letter-spacing:.5px;font-family:'Space Mono',monospace}
+
+/* PROCESS */
+.process-section{background:#0A1628;padding:80px 4%}
+.proc-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:52px;position:relative}
+.proc-steps::before{content:"";position:absolute;top:28px;left:8%;right:8%;height:1px;background:linear-gradient(to right,#E8500A,rgba(232,80,10,0.2));z-index:0}
+.pstep{text-align:center;position:relative;z-index:1}
+.pstep-num{width:56px;height:56px;background:#E8500A;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;border:2px solid rgba(232,80,10,0.3)}
+.pstep-title{font-size:11px;font-weight:600;color:#fff;letter-spacing:.5px;margin-bottom:4px}
+.pstep-desc{font-size:10px;color:rgba(255,255,255,0.4);line-height:1.5;padding:0 4px;font-family:'Space Mono',monospace}
+
+/* INFRA */
+#infra{background:#0F1F38}
+.infra-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:48px;align-items:start}
+.machine{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.machine:last-child{border-bottom:none}
+.m-icon{width:48px;height:48px;background:rgba(232,80,10,0.1);border:1px solid rgba(232,80,10,0.2);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.m-icon svg{width:22px;height:22px;fill:#E8500A}
+.m-name{font-size:14px;font-weight:600;color:#fff;margin-bottom:4px}
+.m-desc{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.55}
+.infra-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.istat{background:rgba(232,80,10,0.06);border:1px solid rgba(232,80,10,0.15);padding:24px;border-radius:4px}
+.istat-val{font-family:'Bebas Neue',sans-serif;font-size:52px;color:#E8500A;line-height:1}
+.istat-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:6px;font-family:'Space Mono',monospace}
+.istat-sub{font-size:11px;color:rgba(255,255,255,0.35);margin-top:3px}
+.cap-block{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:28px;border-radius:4px;margin-top:12px}
+.cap-lbl{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:10px}
+.cap-val{font-family:'Bebas Neue',sans-serif;font-size:46px;color:#fff;line-height:1}
+.cap-sub{font-size:12px;color:rgba(255,255,255,0.4);margin-top:6px}
+.cap-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;margin-top:16px;overflow:hidden}
+.cap-bar-fill{height:100%;width:75%;background:linear-gradient(to right,#E8500A,#FF6B2B);border-radius:2px}
+
+/* QUALITY */
+#quality{background:#0A1628}
+.quality-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:48px;align-items:center}
+.q-pillars{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.qp{border:1px solid rgba(255,255,255,0.06);padding:22px;border-radius:4px;border-top:2px solid #E8500A;background:rgba(255,255,255,0.02);transition:transform 0.3s}
+.qp:hover{transform:translateY(-4px)}
+.qp-title{font-family:'Bebas Neue',sans-serif;font-size:18px;color:#fff;margin-bottom:8px;letter-spacing:.5px}
+.qp-desc{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.65}
+.q-statement{background:#0F1F38;border:1px solid rgba(255,255,255,0.06);padding:48px;border-radius:4px}
+.q-quote{font-family:'Bebas Neue',sans-serif;font-size:32px;color:#fff;line-height:1.2;margin-bottom:28px;letter-spacing:1px}
+.q-quote span{color:#E8500A}
+.q-list{list-style:none}
+.q-list li{display:flex;gap:12px;align-items:center;color:rgba(255,255,255,0.6);font-size:13px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.q-list li:last-child{border-bottom:none}
+.q-list li::before{content:"✓";color:#E8500A;font-weight:700;flex-shrink:0}
+
+/* CLIENTS */
+#clients{background:#0F1F38}
+.clients-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:48px;align-items:start}
+.client-card{background:#0A1628;border:1px solid rgba(255,255,255,0.07);padding:48px;border-radius:4px;text-align:center}
+.gabriel-logo{width:100px;height:100px;background:#E8500A;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;letter-spacing:2px}
+.client-name{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;letter-spacing:1px;margin-bottom:4px}
+.client-cat{font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.4);margin-bottom:18px;font-family:'Space Mono',monospace;text-transform:uppercase}
+.client-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7}
+.ctags{display:flex;gap:6px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.ctag{background:rgba(232,80,10,0.1);border:1px solid rgba(232,80,10,0.2);color:#E8500A;font-size:9px;font-weight:600;padding:4px 10px;border-radius:2px;letter-spacing:.5px;font-family:'Space Mono',monospace}
+.client-right h3{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;margin-bottom:14px;letter-spacing:.5px}
+.client-right p{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:14px}
+.supply-list{list-style:none;margin-top:20px}
+.supply-list li{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5}
+.supply-list li::before{content:"";width:6px;height:6px;background:#E8500A;border-radius:50%;margin-top:4px;flex-shrink:0}
+.client-note{background:rgba(232,80,10,0.06);border:1px solid rgba(232,80,10,0.15);padding:20px;border-radius:4px;margin-top:20px;font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7}
+
+/* CAREERS */
+#careers{background:#0A1628}
+.careers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin-top:48px}
+.jcard{background:#0A1628;padding:28px;transition:background 0.3s;position:relative;overflow:hidden}
+.jcard::before{content:"";position:absolute;top:0;left:0;width:0;height:2px;background:#E8500A;transition:width 0.3s}
+.jcard:hover::before{width:100%}
+.jcard:hover{background:rgba(232,80,10,0.04)}
+.jtype{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#E8500A;text-transform:uppercase;margin-bottom:10px}
+.jtitle{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;letter-spacing:.5px;margin-bottom:12px}
+.jdesc{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.65;margin-bottom:16px}
+.jtags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px}
+.jtag{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);font-size:9px;padding:3px 8px;border-radius:2px;font-family:'Space Mono',monospace}
+.japply{display:inline-flex;align-items:center;gap:6px;color:#E8500A;font-size:11px;font-weight:700;text-decoration:none;font-family:'Space Mono',monospace;letter-spacing:1px;cursor:pointer;background:none;border:none}
+.careers-cta{margin-top:32px;background:rgba(232,80,10,0.08);border:1px solid rgba(232,80,10,0.2);padding:28px 36px;border-radius:4px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.careers-cta p{font-size:16px;font-weight:500;color:#fff}
+.careers-cta span{font-size:12px;color:rgba(255,255,255,0.5);display:block;margin-top:4px}
+
+/* CONTACT */
+#contact{background:#0F1F38}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:48px;align-items:start}
+.cinfo h3{font-family:'Bebas Neue',sans-serif;font-size:24px;color:#fff;margin-bottom:22px;letter-spacing:.5px}
+.citem{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.c-icon{width:40px;height:40px;background:rgba(232,80,10,0.1);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.c-icon svg{width:16px;height:16px;fill:#E8500A}
+.c-lbl{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#E8500A;text-transform:uppercase;margin-bottom:3px}
+.c-val{font-size:13px;color:#fff;font-weight:500}
+.c-sub{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px}
+.wa-btn{display:flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:13px 22px;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;margin-top:18px;transition:all 0.2s;width:fit-content;font-family:'Space Mono',monospace}
+.wa-btn:hover{background:#1aab52;transform:translateY(-2px)}
+.form-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:36px;border-radius:4px}
+.form-box h3{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;margin-bottom:22px;letter-spacing:.5px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:7px}
+.fg input,.fg select,.fg textarea{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:11px 14px;font-size:13px;font-family:'DM Sans',sans-serif;color:#fff;border-radius:3px;outline:none;transition:border-color 0.2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:#E8500A}
+.fg select option{background:#0F1F38;color:#fff}
+.fg textarea{height:88px;resize:vertical}
+.fsub{width:100%;background:#E8500A;color:#fff;border:none;padding:13px;font-size:11px;font-family:'Space Mono',monospace;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:3px;cursor:pointer;transition:background 0.2s;margin-top:4px}
+.fsub:hover{background:#FF6B2B}
+
+/* FOOTER */
+footer{background:#060E1A;padding:56px 4% 24px;border-top:1px solid rgba(255,255,255,0.05)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1280px;margin:0 auto;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.fbrand-name{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;letter-spacing:3px;display:block;margin-bottom:10px}
+.fbrand-desc{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.8;max-width:260px}
+.fbadges{display:flex;gap:6px;margin-top:18px;flex-wrap:wrap}
+.fbadge{background:rgba(232,80,10,0.1);border:1px solid rgba(232,80,10,0.2);color:#E8500A;font-size:9px;font-weight:700;letter-spacing:2px;padding:4px 10px;border-radius:2px;font-family:'Space Mono',monospace}
+.fcol h4{font-family:'Space Mono',monospace;font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.fcol ul{list-style:none}
+.fcol ul li{padding:4px 0}
+.fcol ul li a{color:rgba(255,255,255,0.45);font-size:12px;text-decoration:none;transition:color 0.2s}
+.fcol ul li a:hover{color:#E8500A}
+.footer-bottom{max-width:1280px;margin:0 auto;padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-bottom p{font-size:11px;color:rgba(255,255,255,0.3);font-family:'Space Mono',monospace}
+
+/* FLOATING WA */
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:999;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,0.4);text-decoration:none;transition:transform 0.2s}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float svg{width:28px;height:28px;fill:#fff}
+
+/* ISO STRIP */
+.iso-strip{background:#060E1A;border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);padding:24px 4%}
+.iso-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.iso-badge{display:flex;align-items:center;gap:14px}
+.iso-icon{width:50px;height:50px;background:#E8500A;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.iso-icon svg{width:24px;height:24px;fill:#fff}
+.iso-title{font-family:'Bebas Neue',sans-serif;font-size:20px;color:#fff;letter-spacing:1px}
+.iso-sub{font-size:11px;color:rgba(255,255,255,0.4)}
+.iso-tags{display:flex;gap:6px;flex-wrap:wrap}
+.iso-tag{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:2px;font-family:'Space Mono',monospace}
+
+/* ADMIN PANEL */
+#admin-panel{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:9999;overflow-y:auto;padding:20px}
+#admin-panel.show{display:flex;flex-direction:column}
+.admin-wrap{background:#0A1628;border:1px solid rgba(232,80,10,0.3);border-radius:6px;width:100%;max-width:1100px;margin:auto;overflow:hidden}
+.admin-header{background:#E8500A;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+.admin-header h2{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;letter-spacing:2px}
+.admin-close{background:rgba(255,255,255,0.2);border:none;color:#fff;width:34px;height:34px;border-radius:4px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
+.admin-body{display:grid;grid-template-columns:200px 1fr}
+.admin-nav{background:#060E1A;border-right:1px solid rgba(255,255,255,0.06)}
+.admin-nav button{display:block;width:100%;padding:12px 18px;background:none;border:none;color:rgba(255,255,255,0.5);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;text-align:left;cursor:pointer;transition:all 0.2s;border-bottom:1px solid rgba(255,255,255,0.04)}
+.admin-nav button.active{background:rgba(232,80,10,0.12);color:#E8500A;border-right:2px solid #E8500A}
+.admin-nav button:hover:not(.active){background:rgba(255,255,255,0.04);color:#fff}
+.admin-content{padding:24px}
+.admin-tab{display:none}
+.admin-tab.active{display:block}
+.admin-section-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;letter-spacing:1px;margin-bottom:18px}
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.astat{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:18px;border-radius:4px}
+.astat-val{font-family:'Bebas Neue',sans-serif;font-size:34px;color:#E8500A;line-height:1}
+.astat-label{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;font-family:'Space Mono',monospace;text-transform:uppercase;margin-top:4px}
+.admin-form{display:grid;gap:12px}
+.admin-form input,.admin-form select,.admin-form textarea{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:10px 14px;font-size:13px;font-family:'DM Sans',sans-serif;color:#fff;border-radius:3px;outline:none;width:100%}
+.admin-form input:focus,.admin-form select:focus,.admin-form textarea:focus{border-color:#E8500A}
+.admin-form select option{background:#0F1F38}
+.admin-form textarea{height:80px;resize:vertical}
+.admin-form .frow2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.admin-btn{background:#E8500A;color:#fff;border:none;padding:10px 20px;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:3px;cursor:pointer;transition:background 0.2s}
+.admin-btn:hover{background:#FF6B2B}
+.admin-btn.secondary{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7)}
+.admin-btn.secondary:hover{background:rgba(255,255,255,0.12);color:#fff}
+.admin-table{width:100%;border-collapse:collapse;font-size:12px}
+.admin-table th{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.08);text-align:left}
+.admin-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);vertical-align:top}
+.admin-table tr:hover td{background:rgba(255,255,255,0.02)}
+.status-badge{display:inline-block;padding:3px 8px;border-radius:2px;font-size:9px;font-weight:700;letter-spacing:1px;font-family:'Space Mono',monospace}
+.status-new{background:rgba(232,80,10,0.15);color:#E8500A}
+.status-viewed{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5)}
+.admin-msg{background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.3);color:#25D366;padding:12px 16px;border-radius:3px;font-size:12px;font-family:'Space Mono',monospace;margin-top:12px;display:none}
+.admin-msg.show{display:block}
+
+/* APPLICATION MODAL */
+#apply-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:8000;overflow-y:auto;padding:20px;align-items:center;justify-content:center}
+#apply-modal.show{display:flex}
+.apply-wrap{background:#0F1F38;border:1px solid rgba(232,80,10,0.3);border-radius:6px;width:100%;max-width:600px;overflow:hidden}
+.apply-header{background:#E8500A;padding:16px 22px;display:flex;align-items:center;justify-content:space-between}
+.apply-header h3{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;letter-spacing:1.5px}
+.apply-close{background:rgba(255,255,255,0.2);border:none;color:#fff;width:32px;height:32px;border-radius:4px;cursor:pointer;font-size:14px}
+.apply-body{padding:28px}
+.apply-form{display:grid;gap:12px}
+.apply-form .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.apply-form input,.apply-form select,.apply-form textarea{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:10px 14px;font-size:13px;font-family:'DM Sans',sans-serif;color:#fff;border-radius:3px;outline:none}
+.apply-form input:focus,.apply-form select:focus,.apply-form textarea:focus{border-color:#E8500A}
+.apply-form select option{background:#0F1F38}
+.apply-form label{display:block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:5px}
+.apply-form .fg{display:flex;flex-direction:column}
+.file-upload{background:rgba(232,80,10,0.06);border:1px dashed rgba(232,80,10,0.3);padding:20px;border-radius:4px;text-align:center;cursor:pointer}
+.file-upload p{font-size:12px;color:rgba(255,255,255,0.4);margin-top:8px}
+.file-upload span{font-size:10px;color:#E8500A;font-family:'Space Mono',monospace}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero-inner,.about-grid,.prod-header,.infra-layout,.quality-grid,.clients-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
+  .cap-grid,.prod-models,.proc-steps,.careers-grid{grid-template-columns:1fr 1fr}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .mv-grid,.q-pillars,.infra-stats,.admin-stats{grid-template-columns:1fr 1fr}
+  .hero-copy{max-width:none}
+  .hero-right{margin-top:8px}
+  .nlogo-icon{width:170px;height:46px}
+  .nlogo-name{font-size:22px;letter-spacing:2px}
+  .nlogo-tag{font-size:8px;letter-spacing:3px}
+  .nlinks{display:none}
+  .admin-body{grid-template-columns:1fr}
+  .admin-nav{display:flex;flex-wrap:wrap;border-right:none;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .admin-nav button{width:auto;border-bottom:none}
+}
+@media(max-width:600px){
+  .cap-grid,.prod-models,.proc-steps,.careers-grid,.mv-grid,.q-pillars,.infra-stats{grid-template-columns:1fr}
+  .hero h1{font-size:52px}
+  .nlogo{gap:10px}
+  .nlogo-icon{width:134px;height:38px}
+  .nlogo-copy{gap:3px}
+  .nlogo-name{font-size:17px;letter-spacing:1.4px}
+  .nlogo-tag{font-size:7px;letter-spacing:2px}
+  .hero-eyebrow,.hero-prompt-note{max-width:100%}
+  .hero-ops{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#home" class="nlogo">
+    <div class="nlogo-icon">
+      <img src="assets/divinestamp-logo.png" alt="Divinestamp logo">
+    </div>
+    <div class="nlogo-copy">
+      <div class="nlogo-name">Divinestamp</div>
+      <div class="nlogo-tag">Adding Excellence</div>
+    </div>
+  </a>
+  <ul class="nlinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#infra">Infrastructure</a></li>
+    <li><a href="#quality">Quality</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#careers">Careers</a></li>
+    <li><a href="#contact" class="nav-cta">Get Quote</a></li>
+  </ul>
+  <button class="nav-admin-btn" onclick="openAdmin()">⚙ Admin</button>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-factory-bg"></div>
+  <div class="hero-grid-pattern"></div>
+  <div class="hero-vstrip"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-eyebrow"><span class="hero-dot"></span>ISO Certified &nbsp;·&nbsp; Est. Feb 2025 &nbsp;·&nbsp; Hosur, Tamil Nadu</div>
+      <h1>
+        <span class="thin">Advanced VMC manufacturing infrastructure</span>
+        Futuristic<br><span class="hl">Factory Precision.</span>
+        Built for<br>OEM Trust.
+      </h1>
+      <p class="hero-desc">Divinestamp manufactures high-precision aluminium front fork outer tubes in a clean, organized, automation-led production environment. The first screen now presents the exact style you described: wide-angle factory depth, premium industrial lighting, left-side readability, and a stronger modern manufacturing identity.</p>
+      <p class="hero-prompt-note">Modern industrial factory interior. Advanced VMC machines. Bright red equipment accents. Metallic textures, pipes, tall ceilings, soft cinematic shadows, minimal people, and clear left-side space for messaging.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Request a Quote -></a>
+        <a href="#products" class="btn-outline">View Products</a>
+      </div>
+      <div class="hero-stats" id="hero-stats-box">
+        <div class="hstat"><div class="hstat-n" id="hs1">4</div><div class="hstat-l">VMC Machines</div></div>
+        <div class="hstat"><div class="hstat-n" id="hs2">₹1.2Cr</div><div class="hstat-l">Monthly Capacity</div></div>
+        <div class="hstat"><div class="hstat-n" id="hs3">100+</div><div class="hstat-l">Skilled Workforce</div></div>
+        <div class="hstat"><div class="hstat-n" id="hs4">5+</div><div class="hstat-l">Product Models</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-image-card">
+        <div class="hero-image-caption">
+          <div>
+            <strong>Divinestamp manufacturing excellence</strong>
+            <span>Precision aluminium components engineered in a clean, reliable, high-performance production environment</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="hp-label">Hero Direction</div>
+        <div class="hp-title">Empty left zone, strong text contrast, premium factory depth</div>
+        <div class="hp-desc">The updated first screen uses your uploaded factory visual with a darker left gradient, cleaner typography, and stronger lighting mood so the homepage feels more futuristic and more expensive.</div>
+      </div>
+      <div class="hero-ops">
+        <div class="ops-card">
+          <div class="ops-value">24/7</div>
+          <div class="ops-label">Automation mindset</div>
+          <div class="ops-sub">Production narrative centered on precision engineering and continuous output reliability.</div>
+        </div>
+        <div class="ops-card">
+          <div class="ops-value">VMC</div>
+          <div class="ops-label">Machining focus</div>
+          <div class="ops-sub">Visual language tuned for advanced VMC machines, metallic finishes, and disciplined workflows.</div>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="hp-label">OEM Confidence</div>
+        <div class="hp-title">Trusted by serious industrial buyers</div>
+        <div class="hp-desc">The right-side panels now support the background image instead of competing with it, so the page communicates capability, cleanliness, and manufacturing scale at first glance.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES STRIP -->
+<div id="capabilities">
+  <div class="container">
+    <span class="s-label">Why Choose Divinestamp</span>
+    <h2 class="s-title">Built for<br>Industrial Excellence</h2>
+    <div class="cap-grid">
+      <div class="cap-card">
+        <div class="cap-icon"><svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg></div>
+        <div class="cap-title">VMC Precision</div>
+        <div class="cap-desc">Advanced Vertical Machining Centers ensuring ±0.01mm tolerances and consistent dimensional accuracy across high-volume production</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
+        <div class="cap-title">ISO Certified</div>
+        <div class="cap-desc">ISO-certified quality management system with strict inspection at every production stage ensuring full component traceability</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div>
+        <div class="cap-title">On-Time Delivery</div>
+        <div class="cap-desc">Reliable production planning and logistics supporting OEM manufacturing schedules without disruption</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <div class="cap-title">OEM Grade Quality</div>
+        <div class="cap-desc">Components meeting the exacting standards of India's leading automotive OEMs — trusted by Gabriel India Ltd.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="about-deco">2025</div>
+        <span class="s-label">About Divinestamp</span>
+        <h2 class="s-title">Precision from<br>India's Auto Hub</h2>
+        <div class="s-bar"></div>
+        <p class="about-text">Divinestamp Private Limited is a modern precision aluminium component manufacturing company established in February 2025 in Hosur, Tamil Nadu — one of India's fastest-growing automotive industrial hubs.</p>
+        <p class="about-text">We specialize in manufacturing <strong style="color:#fff">Front Fork Outer Tubes</strong> — critical structural components in two-wheeler front suspension systems — using advanced VMC (Vertical Machining Center) technology and high-grade aluminium alloys.</p>
+        <div class="about-pull">
+          <p>"From raw aluminium to precision-engineered automotive components — every step is driven by engineering excellence and an uncompromising commitment to quality."</p>
+        </div>
+        <div class="leader-card">
+          <div class="leader-av">PLR</div>
+          <div>
+            <div class="leader-name">Mr. PLR Reddy</div>
+            <div class="leader-role">Founder & Managing Director — Divinestamp Pvt Ltd</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="mv-grid">
+          <div class="mv"><h3>Mission</h3><p>To manufacture high-quality aluminium components with precision engineering and customer satisfaction as our highest priority — delivering reliable components that power India's automotive industry.</p></div>
+          <div class="mv"><h3>Vision</h3><p>To establish Divinestamp as a leading aluminium component manufacturer in India, recognized for engineering excellence, innovation, and trusted OEM partnerships.</p></div>
+        </div>
+        <table class="fact-table">
+          <tr><td>Founded</td><td>February 2025</td></tr>
+          <tr><td>Headquarters</td><td>Hosur, Tamil Nadu 635126</td></tr>
+          <tr><td>Specialization</td><td>Aluminium Front Fork Outer Tubes</td></tr>
+          <tr><td>Manufacturing</td><td>VMC Precision Machining</td></tr>
+          <tr><td>Product Models</td><td>U86 · U244 · N282 Disc · N282 Drum</td></tr>
+          <tr><td>Workforce</td><td>100+ Engineers & Operators</td></tr>
+          <tr><td>Monthly Capacity</td><td>₹1.2 Crore</td></tr>
+          <tr><td>Key Client</td><td>Gabriel India Ltd.</td></tr>
+          <tr><td>Quality Standard</td><td>ISO Certified Manufacturing</td></tr>
+        </table>
+        <div class="chips">
+          <span class="chip">VMC Machining</span>
+          <span class="chip">ISO Certified</span>
+          <span class="chip">Aluminium Alloy</span>
+          <span class="chip">On-Time Delivery</span>
+          <span class="chip">OEM Supplier</span>
+          <span class="chip">Gabriel Partner</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="container">
+    <div class="prod-header">
+      <div>
+        <span class="s-label">Our Products</span>
+        <h2 class="s-title">Front Fork<br>Outer Tubes</h2>
+        <div class="s-bar"></div>
+        <p class="s-desc">Precision aluminium Front Fork Outer Tubes — critical structural components for motorcycle front suspension systems. Engineered for strength, accuracy, and long service life.</p>
+      </div>
+      <div class="prod-feat-list">
+        <div class="pf"><div class="pf-dot"></div><div><div class="pf-title">High-Grade Aluminium Alloy</div><div class="pf-desc">Premium alloy for optimal strength-to-weight ratio, corrosion resistance, and machinability</div></div></div>
+        <div class="pf"><div class="pf-dot"></div><div><div class="pf-title">VMC Precision Machining</div><div class="pf-desc">Vertical Machining Centers ensuring tight tolerances and consistent surface quality across batches</div></div></div>
+        <div class="pf"><div class="pf-dot"></div><div><div class="pf-title">Automotive OEM Grade</div><div class="pf-desc">ISO-certified manufacturing meeting the quality standards of leading automotive OEMs</div></div></div>
+      </div>
+    </div>
+    <div class="prod-models" id="products-list">
+      <!-- Rendered by JS -->
+    </div>
+    <div class="process-section" style="padding:60px 0 0;background:transparent">
+      <span class="s-label">Manufacturing Process</span>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:#fff;letter-spacing:1px;margin-bottom:40px">How We Build Excellence</h3>
+      <div class="proc-steps" id="process-list">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFRA -->
+<section id="infra">
+  <div class="container">
+    <span class="s-label">Our Facility</span>
+    <h2 class="s-title">State-of-the-Art<br>Manufacturing Infrastructure</h2>
+    <div class="s-bar"></div>
+    <p class="s-desc">Our Hosur facility is equipped with advanced VMC machinery and a highly skilled workforce — designed for consistent quality at high production volumes.</p>
+    <div class="infra-layout">
+      <div>
+        <h3 style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;color:#E8500A;text-transform:uppercase;margin-bottom:22px">Machinery & Equipment</h3>
+        <div class="machine">
+          <div class="m-icon"><svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg></div>
+          <div><div class="m-name">4× VMC Machines (Vertical Machining Centers)</div><div class="m-desc">Advanced multi-axis machining centers delivering tight dimensional tolerances and superior surface finishes across high-volume production runs.</div></div>
+        </div>
+        <div class="machine">
+          <div class="m-icon"><svg viewBox="0 0 24 24"><path d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79z"/></svg></div>
+          <div><div class="m-name">Aluminium Boiler & Melting Furnace</div><div class="m-desc">Specialized industrial heating system for aluminium alloy processing — ensuring optimal material properties before VMC machining operations.</div></div>
+        </div>
+        <div class="machine">
+          <div class="m-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg></div>
+          <div><div class="m-name">Precision Shape Forming Machine</div><div class="m-desc">Industrial forming equipment for shaping aluminium components to precise engineering specifications before final VMC machining.</div></div>
+        </div>
+        <div class="machine">
+          <div class="m-icon"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
+          <div><div class="m-name">Quality Inspection Equipment</div><div class="m-desc">Precision measuring instruments and calibrated tools for dimensional verification and product certification before dispatch.</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="infra-stats">
+          <div class="istat"><div class="istat-val">4</div><div class="istat-label">VMC Machines</div><div class="istat-sub">Vertical Machining Centers</div></div>
+          <div class="istat"><div class="istat-val">100<span style="font-size:28px">+</span></div><div class="istat-label">Workforce</div><div class="istat-sub">Operators & Engineers</div></div>
+          <div class="istat"><div class="istat-val">5<span style="font-size:28px">+</span></div><div class="istat-label">Product Models</div><div class="istat-sub">U86 · U244 · N282 variants</div></div>
+          <div class="istat"><div class="istat-val">ISO</div><div class="istat-label">Certified</div><div class="istat-sub">Quality Management</div></div>
+        </div>
+        <div class="cap-block">
+          <div class="cap-lbl">Monthly Production Capacity</div>
+          <div class="cap-val">₹1.2 Crore</div>
+          <div class="cap-sub">Manufacturing turnover capacity per month</div>
+          <div class="cap-bar"><div class="cap-bar-fill"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ISO STRIP -->
+<div class="iso-strip">
+  <div class="iso-inner">
+    <div class="iso-badge">
+      <div class="iso-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
+      <div><div class="iso-title">ISO Certified Manufacturing</div><div class="iso-sub">Quality Management System · Precision Standards · Hosur, Tamil Nadu</div></div>
+    </div>
+    <div class="iso-tags">
+      <span class="iso-tag">ISO Certified</span>
+      <span class="iso-tag">VMC Machining</span>
+      <span class="iso-tag">OEM Supplier</span>
+      <span class="iso-tag">Gabriel India</span>
+      <span class="iso-tag">Hosur TN</span>
+    </div>
+  </div>
+</div>
+
+<!-- QUALITY -->
+<section id="quality">
+  <div class="container">
+    <span class="s-label">Quality Assurance</span>
+    <h2 class="s-title">Quality & On-Time<br>Delivery Are Our Strength</h2>
+    <div class="s-bar"></div>
+    <div class="quality-grid">
+      <div class="q-pillars">
+        <div class="qp"><div class="qp-title">ISO Certified</div><div class="qp-desc">Our entire process follows ISO-certified quality management — compliance at every production stage.</div></div>
+        <div class="qp"><div class="qp-title">Precision Tolerance</div><div class="qp-desc">VMC machining ensures tight dimensional tolerances — critical for proper fit in suspension systems.</div></div>
+        <div class="qp"><div class="qp-title">100% Inspection</div><div class="qp-desc">Every component undergoes comprehensive dimensional inspection before dispatch.</div></div>
+        <div class="qp"><div class="qp-title">On-Time Delivery</div><div class="qp-desc">Reliable production planning ensuring on-time delivery that supports OEM manufacturing schedules.</div></div>
+      </div>
+      <div class="q-statement">
+        <div class="q-quote">"Quality and <span>On-Time Delivery</span> Are Our Strength."</div>
+        <ul class="q-list">
+          <li>ISO Certified Quality Management System</li>
+          <li>Incoming raw material inspection & verification</li>
+          <li>In-process quality control at every stage</li>
+          <li>Final dimensional and surface quality inspection</li>
+          <li>Production batch traceability records</li>
+          <li>Customer feedback integration & improvement</li>
+          <li>Reliable on-time delivery to OEM partners</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="container">
+    <span class="s-label">Our Clients</span>
+    <h2 class="s-title">Trusted by Industry<br>Leaders</h2>
+    <div class="s-bar"></div>
+    <div class="clients-grid">
+      <div class="client-card">
+        <div class="gabriel-logo">GBL</div>
+        <div class="client-name">Gabriel India Ltd.</div>
+        <div class="client-cat">Automotive Suspension Manufacturer</div>
+        <div class="client-desc">One of India's foremost manufacturers of automotive shock absorbers and suspension systems for two-wheelers and commercial vehicles — a benchmark name in Indian automotive suspension quality.</div>
+        <div class="ctags"><span class="ctag">Front Fork Outer Tubes</span><span class="ctag">OEM Supplier</span><span class="ctag">Trusted Partner</span></div>
+      </div>
+      <div class="client-right">
+        <h3>Supplying Precision to India's Automotive Leaders</h3>
+        <p>Divinestamp is a trusted manufacturing partner supplying precision aluminium Front Fork Outer Tubes to Gabriel India Ltd. — one of India's leading manufacturers of automotive suspension systems.</p>
+        <p>Our partnership with Gabriel reflects our commitment to delivering components that meet the highest automotive quality standards — on time, every time.</p>
+        <ul class="supply-list">
+          <li>Front Fork Outer Tubes (U86, U244, N282 Disc & Drum) supplied regularly to Gabriel India</li>
+          <li>Consistent product quality meeting Gabriel's OEM engineering standards</li>
+          <li>Reliable production scheduling aligned with customer production timelines</li>
+          <li>ISO-certified manufacturing ensuring full component traceability</li>
+          <li>Growing production capacity to scale with increasing customer demand</li>
+        </ul>
+        <div class="client-note">Divinestamp is actively seeking partnerships with additional automotive OEMs and Tier-1 suppliers. Contact us to explore manufacturing partnerships.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section id="careers">
+  <div class="container">
+    <span class="s-label">Career Opportunities</span>
+    <h2 class="s-title">Build Your Career in<br>Precision Manufacturing</h2>
+    <div class="s-bar"></div>
+    <p class="s-desc">Join a fast-growing precision engineering company in Hosur, Tamil Nadu. We are looking for dedicated professionals passionate about quality manufacturing and automotive engineering excellence.</p>
+    <div class="careers-grid" id="jobs-list">
+      <!-- Rendered by JS -->
+    </div>
+    <div class="careers-cta">
+      <div><p>Don't see a suitable opening? Send us your resume.</p><span>We welcome engineers, operators, and manufacturing professionals to join our growing team.</span></div>
+      <a href="mailto:Divinestamp@gmail.com" class="btn-primary">Send Your Resume →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <span class="s-label">Get In Touch</span>
+    <h2 class="s-title">Request a Quote or<br>Send an Enquiry</h2>
+    <div class="s-bar"></div>
+    <div class="contact-grid">
+      <div class="cinfo">
+        <h3>Contact Information</h3>
+        <div class="citem"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div><div><div class="c-lbl">Address</div><div class="c-val">Divinestamp Private Limited</div><div class="c-sub">QQJX+322, 1st Cross Rd, Ezhil Nagar, Begepalli<br>Hosur, Tamil Nadu 635126, India</div></div></div>
+        <div class="citem"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div><div><div class="c-lbl">Phone</div><div class="c-val">+91 99001 24981</div><div class="c-sub">Monday – Saturday, 9:00 AM – 6:00 PM</div></div></div>
+        <div class="citem"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div><div><div class="c-lbl">Email</div><div class="c-val">Divinestamp@gmail.com</div><div class="c-sub">We respond within 24 business hours</div></div></div>
+        <a href="https://wa.me/919900124981" class="wa-btn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp Us
+        </a>
+      </div>
+      <div class="form-box">
+        <h3>Send an Enquiry</h3>
+        <div class="frow">
+          <div class="fg"><label>Your Name *</label><input type="text" id="eq-name" placeholder="Full Name"></div>
+          <div class="fg"><label>Company Name</label><input type="text" id="eq-company" placeholder="Company / Organisation"></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Phone *</label><input type="tel" id="eq-phone" placeholder="+91 XXXXX XXXXX"></div>
+          <div class="fg"><label>Email *</label><input type="email" id="eq-email" placeholder="your@email.com"></div>
+        </div>
+        <div class="fg"><label>Enquiry Type</label><select id="eq-type"><option value="">Select Type</option><option>Product Enquiry</option><option>Bulk Order</option><option>Vendor Registration</option><option>Other</option></select></div>
+        <div class="frow">
+          <div class="fg"><label>Product</label><select id="eq-product"><option value="">Select Model</option><option>U86</option><option>U244</option><option>N282 Disc</option><option>N282 Drum</option><option>Multiple Models</option></select></div>
+          <div class="fg"><label>Quantity</label><input type="text" id="eq-qty" placeholder="e.g. 500 units/month"></div>
+        </div>
+        <div class="fg"><label>Message</label><textarea id="eq-msg" placeholder="Describe your requirements..."></textarea></div>
+        <button class="fsub" onclick="submitEnquiry()">Submit Enquiry →</button>
+        <div class="admin-msg" id="eq-success">✓ Enquiry submitted! Our team will contact you within 24 business hours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <span class="fbrand-name">DIVINESTAMP PVT LTD</span>
+      <p class="fbrand-desc">Precision aluminium Front Fork Outer Tube manufacturing using advanced VMC machining. ISO-certified manufacturing from Hosur, Tamil Nadu. Trusted OEM supplier to India's automotive industry.</p>
+      <div class="fbadges"><span class="fbadge">ISO Certified</span><span class="fbadge">Gabriel Supplier</span><span class="fbadge">VMC Machining</span></div>
+    </div>
+    <div class="fcol"><h4>Company</h4><ul><li><a href="#about">About Us</a></li><li><a href="#about">Leadership</a></li><li><a href="#clients">Our Clients</a></li><li><a href="#careers">Careers</a></li></ul></div>
+    <div class="fcol"><h4>Products</h4><ul><li><a href="#products">Front Fork Tubes</a></li><li><a href="#products">Model U86</a></li><li><a href="#products">Model U244</a></li><li><a href="#products">Model N282 Disc</a></li><li><a href="#products">Model N282 Drum</a></li></ul></div>
+    <div class="fcol"><h4>Contact</h4><ul><li><a href="tel:+919900124981">+91 99001 24981</a></li><li><a href="mailto:Divinestamp@gmail.com">Divinestamp@gmail.com</a></li><li><a href="#">Hosur, TN 635126</a></li><li><a href="https://wa.me/919900124981">WhatsApp</a></li></ul></div>
+  </div>
+  <div class="footer-bottom" style="max-width:1280px;margin:0 auto;padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+    <p style="font-size:11px;color:rgba(255,255,255,0.3);font-family:'Space Mono',monospace">© 2025 Divinestamp Private Limited. All rights reserved. Hosur, Tamil Nadu, India.</p>
+    <span style="background:rgba(232,80,10,0.1);border:1px solid rgba(232,80,10,0.2);color:#E8500A;font-size:9px;font-weight:700;letter-spacing:2px;padding:4px 10px;border-radius:2px;font-family:'Space Mono',monospace">ISO CERTIFIED</span>
+  </div>
+</footer>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/919900124981" class="wa-float">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <h2>⚙ ADMIN PANEL — DIVINESTAMP</h2>
+      <button class="admin-close" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="admin-body">
+      <nav class="admin-nav">
+        <button class="active" onclick="showTab('dashboard',this)">Dashboard</button>
+        <button onclick="showTab('products-admin',this)">Products</button>
+        <button onclick="showTab('jobs-admin',this)">Job Openings</button>
+        <button onclick="showTab('applications-admin',this)">Applications</button>
+        <button onclick="showTab('enquiries-admin',this)">Enquiries</button>
+        <button onclick="showTab('content-admin',this)">Site Content</button>
+      </nav>
+      <div class="admin-content">
+        <!-- DASHBOARD -->
+        <div class="admin-tab active" id="tab-dashboard">
+          <div class="admin-section-title">Dashboard Overview</div>
+          <div class="admin-stats">
+            <div class="astat"><div class="astat-val" id="d-enquiries">0</div><div class="astat-label">Total Enquiries</div></div>
+            <div class="astat"><div class="astat-val" id="d-applications">0</div><div class="astat-label">Applications</div></div>
+            <div class="astat"><div class="astat-val" id="d-jobs">3</div><div class="astat-label">Active Jobs</div></div>
+            <div class="astat"><div class="astat-val" id="d-products">4</div><div class="astat-label">Products</div></div>
+          </div>
+          <div style="background:rgba(232,80,10,0.06);border:1px solid rgba(232,80,10,0.15);padding:18px;border-radius:4px">
+            <p style="font-size:13px;color:rgba(255,255,255,0.7)">✓ Website is <strong style="color:#E8500A">Live & Dynamic</strong> — All sections render from the database (localStorage). Use the tabs to manage content, view enquiries, and process applications.</p>
+          </div>
+        </div>
+
+        <!-- PRODUCTS ADMIN -->
+        <div class="admin-tab" id="tab-products-admin">
+          <div class="admin-section-title">Manage Products</div>
+          <div class="admin-form" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:20px;border-radius:4px;margin-bottom:20px">
+            <div style="font-family:'Space Mono',monospace;font-size:10px;color:#E8500A;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">Add / Edit Product</div>
+            <div class="frow2">
+              <input type="text" id="p-name" placeholder="Model Name (e.g. U86)">
+              <input type="text" id="p-sub" placeholder="Subtitle (e.g. Front Fork Outer Tube)">
+            </div>
+            <textarea id="p-desc" placeholder="Product description..." style="height:70px;resize:vertical;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:10px 14px;font-size:13px;font-family:'DM Sans',sans-serif;color:#fff;border-radius:3px;outline:none;width:100%"></textarea>
+            <input type="text" id="p-feats" placeholder="Features (comma-separated)">
+            <div style="display:flex;gap:10px">
+              <button class="admin-btn" onclick="addProduct()">Add Product</button>
+              <div class="admin-msg" id="p-msg" style="margin-top:0">✓ Product saved!</div>
+            </div>
+          </div>
+          <table class="admin-table"><thead><tr><th>Model</th><th>Description</th><th>Action</th></tr></thead><tbody id="products-admin-table"></tbody></table>
+        </div>
+
+        <!-- JOBS ADMIN -->
+        <div class="admin-tab" id="tab-jobs-admin">
+          <div class="admin-section-title">Manage Job Openings</div>
+          <div class="admin-form" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:20px;border-radius:4px;margin-bottom:20px">
+            <div style="font-family:'Space Mono',monospace;font-size:10px;color:#E8500A;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">Post New Job</div>
+            <div class="frow2">
+              <input type="text" id="j-title" placeholder="Job Title">
+              <select id="j-type"><option>Full Time</option><option>Part Time</option><option>Contract</option></select>
+            </div>
+            <textarea id="j-desc" placeholder="Job description..." style="height:70px;resize:vertical;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:10px 14px;font-size:13px;font-family:'DM Sans',sans-serif;color:#fff;border-radius:3px;outline:none;width:100%"></textarea>
+            <input type="text" id="j-tags" placeholder="Skills/Tags (comma-separated)">
+            <div style="display:flex;gap:10px">
+              <button class="admin-btn" onclick="addJob()">Post Job</button>
+              <div class="admin-msg" id="j-msg" style="margin-top:0">✓ Job posted!</div>
+            </div>
+          </div>
+          <table class="admin-table"><thead><tr><th>Title</th><th>Type</th><th>Action</th></tr></thead><tbody id="jobs-admin-table"></tbody></table>
+        </div>
+
+        <!-- APPLICATIONS ADMIN -->
+        <div class="admin-tab" id="tab-applications-admin">
+          <div class="admin-section-title">Job Applications</div>
+          <table class="admin-table"><thead><tr><th>Name</th><th>Position</th><th>Phone</th><th>Email</th><th>Experience</th><th>Status</th></tr></thead><tbody id="applications-table"></tbody></table>
+          <div id="no-applications" style="text-align:center;padding:40px;color:rgba(255,255,255,0.3);font-size:13px">No applications received yet.</div>
+        </div>
+
+        <!-- ENQUIRIES ADMIN -->
+        <div class="admin-tab" id="tab-enquiries-admin">
+          <div class="admin-section-title">Lead Enquiries</div>
+          <table class="admin-table"><thead><tr><th>Name</th><th>Company</th><th>Phone</th><th>Product</th><th>Type</th><th>Status</th></tr></thead><tbody id="enquiries-table"></tbody></table>
+          <div id="no-enquiries" style="text-align:center;padding:40px;color:rgba(255,255,255,0.3);font-size:13px">No enquiries received yet.</div>
+        </div>
+
+        <!-- CONTENT ADMIN -->
+        <div class="admin-tab" id="tab-content-admin">
+          <div class="admin-section-title">Edit Site Content</div>
+          <div class="admin-form" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:20px;border-radius:4px">
+            <div style="font-family:'Space Mono',monospace;font-size:10px;color:#E8500A;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px">Homepage Statistics</div>
+            <div class="frow2">
+              <div><label style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;display:block;margin-bottom:5px">VMC Machines</label><input type="text" id="c-vmc" placeholder="4"></div>
+              <div><label style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;display:block;margin-bottom:5px">Monthly Capacity</label><input type="text" id="c-cap" placeholder="₹1.2Cr"></div>
+            </div>
+            <div class="frow2">
+              <div><label style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;display:block;margin-bottom:5px">Workforce</label><input type="text" id="c-wf" placeholder="100+"></div>
+              <div><label style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;display:block;margin-bottom:5px">Product Models</label><input type="text" id="c-pm" placeholder="5+"></div>
+            </div>
+            <button class="admin-btn" onclick="saveContent()">Save & Update Live Site</button>
+            <div class="admin-msg" id="c-msg" style="margin-top:10px">✓ Site content updated live!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APPLICATION MODAL -->
+<div id="apply-modal">
+  <div class="apply-wrap">
+    <div class="apply-header">
+      <h3>Apply Now — <span id="apply-job-title">Position</span></h3>
+      <button class="apply-close" onclick="closeApply()">✕</button>
+    </div>
+    <div class="apply-body">
+      <div class="apply-form">
+        <div class="frow">
+          <div class="fg"><label>Full Name *</label><input type="text" id="ap-name" placeholder="Your full name"></div>
+          <div class="fg"><label>Mobile Number *</label><input type="tel" id="ap-phone" placeholder="+91 XXXXX XXXXX"></div>
+        </div>
+        <div class="fg"><label>Email ID *</label><input type="email" id="ap-email" placeholder="your@email.com"></div>
+        <div class="frow">
+          <div class="fg"><label>Position Applying For</label><select id="ap-pos"><option>Machine Operator</option><option>VMC Operator</option><option>Quality Inspector</option><option>Supervisor</option></select></div>
+          <div class="fg"><label>Experience (Years)</label><input type="text" id="ap-exp" placeholder="e.g. 2 years"></div>
+        </div>
+        <div class="fg">
+          <label>Upload Resume</label>
+          <div class="file-upload" onclick="document.getElementById('ap-file').click()">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="#E8500A"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 15.01l1.41 1.41L11 14.84V19h2v-4.16l1.59 1.59L16 15.01 12.01 11 8 15.01z"/></svg>
+            <p id="file-name">Click to upload resume (PDF/DOC)</p>
+            <span>Max 5MB</span>
+            <input type="file" id="ap-file" style="display:none" accept=".pdf,.doc,.docx" onchange="document.getElementById('file-name').textContent=this.files[0]?this.files[0].name:'Click to upload resume'">
+          </div>
+        </div>
+        <div class="fg"><label>Message (Optional)</label><textarea id="ap-msg" placeholder="Tell us about yourself..."></textarea></div>
+        <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitApplication()">Submit Application →</button>
+        <div class="admin-msg" id="ap-success">✓ Application submitted! We will contact you within 3 business days.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// DATA STORE (localStorage-based dynamic backend simulation)
+var DB = {
+  get: function(k){try{return JSON.parse(localStorage.getItem('ds_'+k)||'null')}catch(e){return null}},
+  set: function(k,v){try{localStorage.setItem('ds_'+k,JSON.stringify(v))}catch(e){}}
+};
+
+// DEFAULT DATA
+var defaultProducts = [
+  {id:1,name:'U86',sub:'Front Fork Outer Tube',desc:'Precision aluminium suspension component widely used in modern two-wheeler front suspension assemblies. Designed for durability, smooth operation, and reliable performance.',feats:['High-strength aluminium alloy','VMC machined surfaces','Excellent corrosion resistance','Automotive OEM grade']},
+  {id:2,name:'U244',sub:'High-Performance Suspension Component',desc:'A high-performance outer tube for advanced motorcycle suspension applications requiring enhanced structural stability, superior shock absorption, and reliable long-term durability.',feats:['Precision-engineered aluminium body','High strength and fatigue resistance','Excellent dimensional consistency','ISO certified manufacturing'],featured:true},
+  {id:3,name:'N282 Disc',sub:'Disc Brake Variant — Front Fork Outer Tube',desc:'Engineered for two-wheelers equipped with disc brake systems. High-accuracy machining delivers superior structural strength and precision fitment for disc brake suspension assemblies.',feats:['High dimensional accuracy','Smooth precision-ground finish','Disc brake compatible','Fatigue resistance tested']},
+  {id:4,name:'N282 Drum',sub:'Drum Brake Variant — Front Fork Outer Tube',desc:'Designed for drum brake equipped motorcycles. Delivers consistent performance with optimized geometry and high structural integrity for long-term service in suspension systems.',feats:['Drum brake system compatible','Consistent dimensional output','High-grade aluminium alloy','ISO quality certified']}
+];
+var defaultJobs = [
+  {id:1,title:'Machine Operator',type:'Full Time',desc:'Operate and maintain aluminium machining equipment to produce precision front fork outer tube components. Ensure production targets and quality standards are consistently met.',tags:['VMC Operation','Aluminium Machining','Quality Check']},
+  {id:2,title:'VMC Programmer',type:'Full Time',desc:'Develop and optimize programs for Vertical Machining Centers. Work with engineering teams to achieve tight tolerances and efficient production cycles for precision aluminium components.',tags:['VMC Programming','G-Code','CAM Software']},
+  {id:3,title:'Quality Inspector',type:'Full Time',desc:'Conduct dimensional inspection, incoming material checks, and final product verification to ensure all components meet ISO quality standards before delivery to OEM customers.',tags:['Dimensional Inspection','ISO Standards','Quality Control']}
+];
+var defaultProcess = [
+  {n:'01',title:'Raw Material',desc:'High-grade aluminium alloy selection & incoming inspection'},
+  {n:'02',title:'Melting',desc:'Aluminium melting and controlled heat preparation'},
+  {n:'03',title:'Sanding',desc:'Surface sanding and profile refinement before machining'},
+  {n:'04',title:'VMC Machining',desc:'High precision machining & surface finishing using VMC'},
+  {n:'05',title:'Quality Check',desc:'Dimensional & structural inspection'},
+  {n:'06',title:'Dispatch',desc:'Secure packaging & on-time delivery to clients'}
+];
+
+function normalizeProcessData(steps){
+  return (steps||[]).map(function(step){
+    if(step.n==='02' || step.title==='Boiler Processing'){
+      return {n:'02',title:'Melting',desc:'Aluminium melting and controlled heat preparation'};
+    }
+    if(step.n==='03' || step.title==='Shape Forming'){
+      return {n:'03',title:'Sanding',desc:'Surface sanding and profile refinement before machining'};
+    }
+    return step;
+  });
+}
+
+// INIT
+function initData(){
+  if(!DB.get('products')) DB.set('products',defaultProducts);
+  if(!DB.get('jobs')) DB.set('jobs',defaultJobs);
+  var savedProcess = DB.get('process');
+  if(!savedProcess) DB.set('process',defaultProcess);
+  else DB.set('process',normalizeProcessData(savedProcess));
+  if(!DB.get('enquiries')) DB.set('enquiries',[]);
+  if(!DB.get('applications')) DB.set('applications',[]);
+  if(!DB.get('content')) DB.set('content',{vmc:'4',cap:'₹1.2Cr',wf:'100+',pm:'5+'});
+}
+
+// RENDER PRODUCTS
+function renderProducts(){
+  var products = DB.get('products')||defaultProducts;
+  var el = document.getElementById('products-list');
+  if(!el) return;
+  el.innerHTML = products.map(function(p){
+    return '<div class="mc">'
+      +'<div class="mc-head'+(p.featured?' featured':'')+'"><div class="mc-tag">Model · Front Fork Outer Tube</div><div class="mc-model">'+p.name+'</div><div class="mc-sub">'+p.sub+'</div></div>'
+      +'<div class="mc-body"><p class="mc-desc">'+p.desc+'</p><ul class="mc-feats">'+p.feats.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul><div class="mc-badge">Automotive · Suspension</div></div>'
+      +'</div>';
+  }).join('');
+}
+
+// RENDER PROCESS
+function renderProcess(){
+  var steps = normalizeProcessData(DB.get('process')||defaultProcess);
+  DB.set('process',steps);
+  var el = document.getElementById('process-list');
+  if(!el) return;
+  el.innerHTML = steps.map(function(s){
+    return '<div class="pstep"><div class="pstep-num">'+s.n+'</div><div class="pstep-title">'+s.title+'</div><div class="pstep-desc">'+s.desc+'</div></div>';
+  }).join('');
+}
+
+// RENDER JOBS
+function renderJobs(){
+  var jobs = DB.get('jobs')||defaultJobs;
+  var el = document.getElementById('jobs-list');
+  if(!el) return;
+  el.innerHTML = jobs.map(function(j){
+    return '<div class="jcard">'
+      +'<div class="jtype">'+j.type+' · Hosur, TN</div>'
+      +'<div class="jtitle">'+j.title+'</div>'
+      +'<p class="jdesc">'+j.desc+'</p>'
+      +'<div class="jtags">'+j.tags.map(function(t){return '<span class="jtag">'+t+'</span>'}).join('')+'</div>'
+      +'<button class="japply" onclick="openApply(\''+j.title+'\')">Apply Now →</button>'
+      +'</div>';
+  }).join('');
+}
+
+// RENDER CONTENT
+function renderContent(){
+  var c = DB.get('content')||{vmc:'4',cap:'₹1.2Cr',wf:'100+',pm:'5+'};
+  var hs1=document.getElementById('hs1'),hs2=document.getElementById('hs2'),hs3=document.getElementById('hs3'),hs4=document.getElementById('hs4');
+  if(hs1) hs1.textContent=c.vmc;
+  if(hs2) hs2.textContent=c.cap;
+  if(hs3) hs3.textContent=c.wf;
+  if(hs4) hs4.textContent=c.pm;
+}
+
+// ADMIN
+function openAdmin(){
+  document.getElementById('admin-panel').classList.add('show');
+  refreshAdminStats();
+  renderAdminProducts();
+  renderAdminJobs();
+  renderAdminApplications();
+  renderAdminEnquiries();
+}
+function closeAdmin(){document.getElementById('admin-panel').classList.remove('show')}
+function showTab(id,btn){
+  document.querySelectorAll('.admin-tab').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('.admin-nav button').forEach(function(b){b.classList.remove('active')});
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function refreshAdminStats(){
+  var enqs=DB.get('enquiries')||[];
+  var apps=DB.get('applications')||[];
+  var jobs=DB.get('jobs')||[];
+  var prods=DB.get('products')||[];
+  document.getElementById('d-enquiries').textContent=enqs.length;
+  document.getElementById('d-applications').textContent=apps.length;
+  document.getElementById('d-jobs').textContent=jobs.length;
+  document.getElementById('d-products').textContent=prods.length;
+}
+function renderAdminProducts(){
+  var products=DB.get('products')||[];
+  var tb=document.getElementById('products-admin-table');
+  if(!tb) return;
+  tb.innerHTML=products.map(function(p){
+    return '<tr><td><strong style="color:#fff">'+p.name+'</strong></td><td style="max-width:200px;overflow:hidden;text-overflow:ellipsis">'+p.desc.substring(0,60)+'...</td><td><button class="admin-btn secondary" style="font-size:9px;padding:5px 10px" onclick="deleteProduct('+p.id+')">Delete</button></td></tr>';
+  }).join('');
+}
+function addProduct(){
+  var name=document.getElementById('p-name').value;
+  var sub=document.getElementById('p-sub').value;
+  var desc=document.getElementById('p-desc').value;
+  var feats=document.getElementById('p-feats').value.split(',').map(function(f){return f.trim()}).filter(Boolean);
+  if(!name||!desc) return;
+  var products=DB.get('products')||[];
+  products.push({id:Date.now(),name:name,sub:sub||'Front Fork Outer Tube',desc:desc,feats:feats});
+  DB.set('products',products);
+  renderProducts();renderAdminProducts();refreshAdminStats();
+  document.getElementById('p-name').value='';document.getElementById('p-sub').value='';document.getElementById('p-desc').value='';document.getElementById('p-feats').value='';
+  showMsg('p-msg');
+}
+function deleteProduct(id){
+  var products=(DB.get('products')||[]).filter(function(p){return p.id!==id});
+  DB.set('products',products);renderProducts();renderAdminProducts();refreshAdminStats();
+}
+function renderAdminJobs(){
+  var jobs=DB.get('jobs')||[];
+  var tb=document.getElementById('jobs-admin-table');
+  if(!tb) return;
+  tb.innerHTML=jobs.map(function(j){
+    return '<tr><td><strong style="color:#fff">'+j.title+'</strong></td><td>'+j.type+'</td><td><button class="admin-btn secondary" style="font-size:9px;padding:5px 10px" onclick="deleteJob('+j.id+')">Delete</button></td></tr>';
+  }).join('');
+}
+function addJob(){
+  var title=document.getElementById('j-title').value;
+  var type=document.getElementById('j-type').value;
+  var desc=document.getElementById('j-desc').value;
+  var tags=document.getElementById('j-tags').value.split(',').map(function(t){return t.trim()}).filter(Boolean);
+  if(!title||!desc) return;
+  var jobs=DB.get('jobs')||[];
+  jobs.push({id:Date.now(),title:title,type:type,desc:desc,tags:tags});
+  DB.set('jobs',jobs);
+  renderJobs();renderAdminJobs();refreshAdminStats();
+  document.getElementById('j-title').value='';document.getElementById('j-desc').value='';document.getElementById('j-tags').value='';
+  showMsg('j-msg');
+}
+function deleteJob(id){
+  var jobs=(DB.get('jobs')||[]).filter(function(j){return j.id!==id});
+  DB.set('jobs',jobs);renderJobs();renderAdminJobs();refreshAdminStats();
+}
+function renderAdminApplications(){
+  var apps=DB.get('applications')||[];
+  var tb=document.getElementById('applications-table');
+  var noEl=document.getElementById('no-applications');
+  if(!tb) return;
+  if(apps.length===0){tb.innerHTML='';if(noEl)noEl.style.display='block';return;}
+  if(noEl)noEl.style.display='none';
+  tb.innerHTML=apps.map(function(a){
+    return '<tr><td><strong style="color:#fff">'+a.name+'</strong></td><td>'+a.position+'</td><td>'+a.phone+'</td><td>'+a.email+'</td><td>'+a.experience+'</td><td><span class="status-badge status-new">New</span></td></tr>';
+  }).join('');
+}
+function renderAdminEnquiries(){
+  var enqs=DB.get('enquiries')||[];
+  var tb=document.getElementById('enquiries-table');
+  var noEl=document.getElementById('no-enquiries');
+  if(!tb) return;
+  if(enqs.length===0){tb.innerHTML='';if(noEl)noEl.style.display='block';return;}
+  if(noEl)noEl.style.display='none';
+  tb.innerHTML=enqs.map(function(e){
+    return '<tr><td><strong style="color:#fff">'+e.name+'</strong></td><td>'+(e.company||'-')+'</td><td>'+e.phone+'</td><td>'+(e.product||'-')+'</td><td>'+(e.type||'-')+'</td><td><span class="status-badge status-new">New</span></td></tr>';
+  }).join('');
+}
+function saveContent(){
+  var c={
+    vmc:document.getElementById('c-vmc').value||'4',
+    cap:document.getElementById('c-cap').value||'₹1.2Cr',
+    wf:document.getElementById('c-wf').value||'100+',
+    pm:document.getElementById('c-pm').value||'5+'
+  };
+  DB.set('content',c);renderContent();showMsg('c-msg');
+}
+
+// APPLY MODAL
+var currentJob='';
+function openApply(title){
+  currentJob=title;
+  document.getElementById('apply-job-title').textContent=title;
+  document.getElementById('ap-pos').value=title;
+  document.getElementById('apply-modal').classList.add('show');
+}
+function closeApply(){document.getElementById('apply-modal').classList.remove('show')}
+function submitApplication(){
+  var name=document.getElementById('ap-name').value;
+  var phone=document.getElementById('ap-phone').value;
+  var email=document.getElementById('ap-email').value;
+  var position=document.getElementById('ap-pos').value;
+  var experience=document.getElementById('ap-exp').value;
+  var msg=document.getElementById('ap-msg').value;
+  if(!name||!phone) {alert('Please fill required fields.');return;}
+  var apps=DB.get('applications')||[];
+  apps.push({id:Date.now(),name:name,phone:phone,email:email,position:position,experience:experience,message:msg,date:new Date().toLocaleDateString()});
+  DB.set('applications',apps);
+  showMsg('ap-success');
+  setTimeout(function(){closeApply();document.getElementById('ap-success').classList.remove('show');},2500);
+}
+
+// ENQUIRY
+function submitEnquiry(){
+  var name=document.getElementById('eq-name').value;
+  var phone=document.getElementById('eq-phone').value;
+  var email=document.getElementById('eq-email').value;
+  var company=document.getElementById('eq-company').value;
+  var type=document.getElementById('eq-type').value;
+  var product=document.getElementById('eq-product').value;
+  var qty=document.getElementById('eq-qty').value;
+  var msg=document.getElementById('eq-msg').value;
+  if(!name||!phone) {alert('Please fill required fields.');return;}
+  var enqs=DB.get('enquiries')||[];
+  enqs.push({id:Date.now(),name:name,phone:phone,email:email,company:company,type:type,product:product,quantity:qty,message:msg,date:new Date().toLocaleDateString()});
+  DB.set('enquiries',enqs);
+  showMsg('eq-success');
+}
+
+function showMsg(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  el.classList.add('show');
+  setTimeout(function(){el.classList.remove('show');},3000);
+}
+
+// NAV active state on scroll (simplified)
+window.addEventListener('scroll',function(){
+  var nav=document.getElementById('nav');
+  if(nav) nav.style.borderBottomColor=window.scrollY>50?'rgba(232,80,10,0.4)':'rgba(232,80,10,0.25)';
+});
+
+// INIT
+initData();
+renderProducts();
+renderProcess();
+renderJobs();
+renderContent();
+
+// Pre-fill content admin
+var c=DB.get('content')||{vmc:'4',cap:'₹1.2Cr',wf:'100+',pm:'5+'};
+setTimeout(function(){
+  var vc=document.getElementById('c-vmc');if(vc)vc.value=c.vmc;
+  var cap=document.getElementById('c-cap');if(cap)cap.value=c.cap;
+  var wf=document.getElementById('c-wf');if(wf)wf.value=c.wf;
+  var pm=document.getElementById('c-pm');if(pm)pm.value=c.pm;
+},100);
+</script>
+</body>
+</html>
