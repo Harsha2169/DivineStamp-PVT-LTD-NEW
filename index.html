@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -38,12 +39,11 @@ html{scroll-behavior:smooth}
   padding:0 4%;
   height:68px;
 }
-.nlogo{display:flex;align-items:center;gap:14px;text-decoration:none}
-.nlogo-icon{width:220px;height:56px;background:transparent;border:none;border-radius:0;display:flex;align-items:center;justify-content:flex-start;position:relative;overflow:hidden;flex-shrink:0;box-shadow:none}
-.nlogo-icon img{width:100%;height:100%;object-fit:contain;object-position:left center;display:block}
-.nlogo-copy{display:flex;flex-direction:column;justify-content:center;gap:2px}
-.nlogo-name{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;letter-spacing:2.8px;color:#F7FAFC;text-transform:uppercase;text-shadow:0 4px 16px rgba(0,0,0,0.18)}
-.nlogo-tag{font-family:'Space Mono',monospace;font-size:9px;line-height:1;letter-spacing:4px;color:#FF6B2B;text-transform:uppercase}
+.nlogo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.nlogo-icon{width:172px;height:62px;background:transparent;border:none;border-radius:0;display:flex;align-items:center;justify-content:flex-start;position:relative;overflow:hidden;flex-shrink:0;box-shadow:none}
+.nlogo-icon img{width:100%;height:100%;object-fit:contain;object-position:left center;display:block;filter:contrast(1.08) saturate(1.04)}
+.nlogo-copy{display:flex;flex-direction:column;justify-content:center}
+.nlogo-name{font-family:'Bebas Neue',sans-serif;font-size:31px;line-height:1;letter-spacing:2.6px;color:#F7FAFC;text-transform:uppercase;text-shadow:0 4px 16px rgba(0,0,0,0.18)}
 .nlinks{display:flex;list-style:none;gap:2px}
 .nlinks a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:8px 14px;border-radius:4px;transition:all 0.2s;font-family:'Space Mono',monospace}
 .nlinks a:hover{color:#fff;background:rgba(232,80,10,0.15)}
@@ -83,9 +83,10 @@ html{scroll-behavior:smooth}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(232,80,10,0.12);border:1px solid rgba(232,80,10,0.34);padding:8px 16px;border-radius:999px;margin-bottom:26px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2.5px;color:#FF8C5A;text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,0.16)}
 .hero-dot{width:6px;height:6px;background:#E8500A;border-radius:50%;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-.hero h1{text-shadow:0 10px 32px rgba(0,0,0,0.38);font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,8vw,98px);line-height:0.9;letter-spacing:1.8px;color:#fff;margin-bottom:24px}
+.hero h1{text-shadow:0 10px 32px rgba(0,0,0,0.38);font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,8vw,98px);line-height:0.88;letter-spacing:1px;color:#fff;margin-bottom:24px}
 .hero h1 .hl{color:#E8500A;display:block}
-.hero h1 .thin{font-family:'DM Sans',sans-serif;font-weight:400;font-size:0.24em;letter-spacing:7px;color:rgba(255,255,255,0.62);display:block;margin-bottom:12px;text-transform:uppercase}
+.hero h1 .thin{font-family:'DM Sans',sans-serif;font-weight:400;font-size:0.2em;letter-spacing:7px;color:rgba(255,255,255,0.62);display:block;margin-bottom:14px;text-transform:uppercase}
+.hero h1 .hero-main{display:block;font-size:1.08em;line-height:0.9;letter-spacing:.5px}
 .hero-desc{
   font-size:15px;
   line-height:1.9;
@@ -402,7 +403,238 @@ footer{background:#060E1A;padding:56px 4% 24px;border-top:1px solid rgba(255,255
 .file-upload{background:rgba(232,80,10,0.06);border:1px dashed rgba(232,80,10,0.3);padding:20px;border-radius:4px;text-align:center;cursor:pointer}
 .file-upload p{font-size:12px;color:rgba(255,255,255,0.4);margin-top:8px}
 .file-upload span{font-size:10px;color:#E8500A;font-family:'Space Mono',monospace}
+/* LOGIN MODAL CSS */
+/* ULTRA PREMIUM LOGIN */
+.login-modal{
+display:none;
+position:fixed;
+inset:0;
+z-index:99999;
+background:
+radial-gradient(circle at top right,
+rgba(232,80,10,.18),
+transparent 35%),
+linear-gradient(135deg,#020812,#071325,#0c2346);
+justify-content:center;
+align-items:center;
+}
 
+.login-modal.show{
+display:flex;
+}
+
+.ultra-login{
+width:1250px;
+max-width:95%;
+min-height:700px;
+display:grid;
+grid-template-columns:1.15fr .85fr;
+border-radius:34px;
+overflow:hidden;
+box-shadow:
+0 50px 120px rgba(0,0,0,.6);
+}
+
+.login-left{
+padding:100px 90px;
+background:
+linear-gradient(150deg,#061120,#0d2143);
+display:flex;
+flex-direction:column;
+justify-content:center;
+position:relative;
+}
+
+.login-left:before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+border:1px solid rgba(255,255,255,.05);
+border-radius:50%;
+top:-180px;
+right:-150px;
+}
+
+.secure-tag{
+display:inline-block;
+padding:12px 20px;
+border:1px solid rgba(232,80,10,.4);
+background:rgba(232,80,10,.1);
+border-radius:50px;
+font-family:'Space Mono',monospace;
+font-size:11px;
+letter-spacing:3px;
+color:#ff8c5a;
+margin-bottom:45px;
+}
+
+.login-left h1{
+font-family:'Bebas Neue',sans-serif;
+font-size:120px;
+line-height:.86;
+letter-spacing:4px;
+margin-bottom:30px;
+color:white;
+}
+
+.login-left h1 span{
+display:block;
+font-size:88px;
+color:#E8500A;
+}
+
+.login-left p{
+max-width:560px;
+font-size:20px;
+line-height:1.9;
+color:rgba(255,255,255,.75);
+}
+
+.signal-box{
+margin-top:70px;
+display:inline-flex;
+align-items:center;
+gap:14px;
+padding:18px 28px;
+background:rgba(255,255,255,.04);
+border-radius:18px;
+font-family:'Space Mono',monospace;
+font-size:12px;
+letter-spacing:2px;
+color:#fff;
+width:fit-content;
+}
+
+.signal-dot{
+width:12px;
+height:12px;
+border-radius:50%;
+background:#00ff7f;
+box-shadow:0 0 18px #00ff7f;
+}
+
+.login-right{
+display:flex;
+justify-content:center;
+align-items:center;
+background:
+linear-gradient(135deg,#091729,#0f2c55);
+padding:60px;
+}
+
+.glass-shell{
+width:470px;
+padding:60px 50px;
+border-radius:32px;
+background:
+rgba(255,255,255,.05);
+backdrop-filter:blur(30px);
+border:1px solid rgba(255,255,255,.08);
+box-shadow:
+inset 0 0 20px rgba(255,255,255,.03);
+text-align:center;
+}
+
+.logo-ring{
+width:110px;
+height:110px;
+margin:auto auto 30px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:'Bebas Neue';
+font-size:34px;
+letter-spacing:2px;
+border:2px solid #E8500A;
+box-shadow:0 0 30px rgba(232,80,10,.3);
+}
+
+.glass-shell h2{
+font-family:'Bebas Neue';
+font-size:52px;
+letter-spacing:3px;
+margin-bottom:45px;
+color:white;
+}
+
+.field{
+text-align:left;
+margin-bottom:28px;
+}
+
+.field label{
+display:block;
+margin-bottom:12px;
+font-size:11px;
+letter-spacing:3px;
+font-family:'Space Mono';
+color:#ff8c5a;
+}
+
+.field input{
+width:100%;
+padding:18px 20px;
+background:#132848;
+border:1px solid #2f4d75;
+border-radius:16px;
+font-size:15px;
+color:white;
+outline:none;
+}
+
+.field input:focus{
+border-color:#E8500A;
+box-shadow:0 0 0 3px rgba(232,80,10,.12);
+}
+
+.login-btn{
+width:100%;
+margin-top:18px;
+padding:20px;
+border:none;
+border-radius:16px;
+background:
+linear-gradient(90deg,#E8500A,#ff6b2b);
+font-size:15px;
+font-weight:800;
+letter-spacing:2px;
+cursor:pointer;
+transition:.3s;
+}
+
+.login-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 12px 30px rgba(232,80,10,.3);
+}
+
+#loginError{
+margin-top:18px;
+font-size:14px;
+color:#ff7070;
+}
+
+.close-login{
+position:absolute;
+top:30px;
+right:38px;
+background:none;
+border:none;
+color:white;
+font-size:30px;
+cursor:pointer;
+z-index:100;
+}
+
+@media(max-width:980px){
+.ultra-login{
+grid-template-columns:1fr;
+}
+.login-left{
+display:none;
+}
+}
 /* RESPONSIVE */
 @media(max-width:960px){
   .hero-inner,.about-grid,.prod-header,.infra-layout,.quality-grid,.clients-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
@@ -411,9 +643,9 @@ footer{background:#060E1A;padding:56px 4% 24px;border-top:1px solid rgba(255,255
   .mv-grid,.q-pillars,.infra-stats,.admin-stats{grid-template-columns:1fr 1fr}
   .hero-copy{max-width:none}
   .hero-right{margin-top:8px}
-  .nlogo-icon{width:170px;height:46px}
-  .nlogo-name{font-size:22px;letter-spacing:2px}
-  .nlogo-tag{font-size:8px;letter-spacing:3px}
+  .nlogo{gap:7px}
+  .nlogo-icon{width:148px;height:52px}
+  .nlogo-name{font-size:24px;letter-spacing:2px}
   .nlinks{display:none}
   .admin-body{grid-template-columns:1fr}
   .admin-nav{display:flex;flex-wrap:wrap;border-right:none;border-bottom:1px solid rgba(255,255,255,0.06)}
@@ -422,11 +654,9 @@ footer{background:#060E1A;padding:56px 4% 24px;border-top:1px solid rgba(255,255
 @media(max-width:600px){
   .cap-grid,.prod-models,.proc-steps,.careers-grid,.mv-grid,.q-pillars,.infra-stats{grid-template-columns:1fr}
   .hero h1{font-size:52px}
-  .nlogo{gap:10px}
-  .nlogo-icon{width:134px;height:38px}
-  .nlogo-copy{gap:3px}
-  .nlogo-name{font-size:17px;letter-spacing:1.4px}
-  .nlogo-tag{font-size:7px;letter-spacing:2px}
+  .nlogo{gap:6px}
+  .nlogo-icon{width:122px;height:42px}
+  .nlogo-name{font-size:18px;letter-spacing:1.5px}
   .hero-eyebrow,.hero-prompt-note{max-width:100%}
   .hero-ops{grid-template-columns:1fr}
 }
@@ -442,7 +672,6 @@ footer{background:#060E1A;padding:56px 4% 24px;border-top:1px solid rgba(255,255
     </div>
     <div class="nlogo-copy">
       <div class="nlogo-name">Divinestamp</div>
-      <div class="nlogo-tag">Adding Excellence</div>
     </div>
   </a>
   <ul class="nlinks">
@@ -455,7 +684,7 @@ footer{background:#060E1A;padding:56px 4% 24px;border-top:1px solid rgba(255,255
     <li><a href="#careers">Careers</a></li>
     <li><a href="#contact" class="nav-cta">Get Quote</a></li>
   </ul>
-  <button class="nav-admin-btn" onclick="openAdmin()">⚙ Admin</button>
+  <button class="nav-admin-btn" onclick="openLogin()">⚙ Admin</button>
 </nav>
 
 <!-- HERO -->
@@ -467,9 +696,10 @@ footer{background:#060E1A;padding:56px 4% 24px;border-top:1px solid rgba(255,255
     <div class="hero-copy">
       <div class="hero-eyebrow"><span class="hero-dot"></span>ISO Certified &nbsp;·&nbsp; Est. Feb 2025 &nbsp;·&nbsp; Hosur, Tamil Nadu</div>
       <h1>
-        <span class="thin">Advanced VMC manufacturing infrastructure</span>
-        Futuristic<br><span class="hl">Factory Precision.</span>
-        Built for<br>OEM Trust.
+        <span class="thin">Precision aluminium manufacturing</span>
+        <span class="hero-main">Engineering Precision.</span>
+        <span class="hl">Delivering Trust.</span>
+        <span class="hero-main">Powering Performance.</span>
       </h1>
       <p class="hero-desc">Divinestamp manufactures high-precision aluminium front fork outer tubes in a clean, organized, automation-led production environment. The first screen now presents the exact style you described: wide-angle factory depth, premium industrial lighting, left-side readability, and a stronger modern manufacturing identity.</p>
       <p class="hero-prompt-note">Modern industrial factory interior. Advanced VMC machines. Bright red equipment accents. Metallic textures, pipes, tall ceilings, soft cinematic shadows, minimal people, and clear left-side space for messaging.</p>
@@ -479,7 +709,7 @@ footer{background:#060E1A;padding:56px 4% 24px;border-top:1px solid rgba(255,255
       </div>
       <div class="hero-stats" id="hero-stats-box">
         <div class="hstat"><div class="hstat-n" id="hs1">4</div><div class="hstat-l">VMC Machines</div></div>
-        <div class="hstat"><div class="hstat-n" id="hs2">₹1.2Cr</div><div class="hstat-l">Monthly Capacity</div></div>
+        <div class="hstat"><div class="hstat-n" id="hs2">100000+</div><div class="hstat-l">Monthly Production</div></div>
         <div class="hstat"><div class="hstat-n" id="hs3">100+</div><div class="hstat-l">Skilled Workforce</div></div>
         <div class="hstat"><div class="hstat-n" id="hs4">5+</div><div class="hstat-l">Product Models</div></div>
       </div>
@@ -583,7 +813,7 @@ footer{background:#060E1A;padding:56px 4% 24px;border-top:1px solid rgba(255,255
           <tr><td>Manufacturing</td><td>VMC Precision Machining</td></tr>
           <tr><td>Product Models</td><td>U86 · U244 · N282 Disc · N282 Drum</td></tr>
           <tr><td>Workforce</td><td>100+ Engineers & Operators</td></tr>
-          <tr><td>Monthly Capacity</td><td>₹1.2 Crore</td></tr>
+              <tr><td>Monthly Production</td><td>100000+</td></tr>
           <tr><td>Key Client</td><td>Gabriel India Ltd.</td></tr>
           <tr><td>Quality Standard</td><td>ISO Certified Manufacturing</td></tr>
         </table>
@@ -664,8 +894,8 @@ footer{background:#060E1A;padding:56px 4% 24px;border-top:1px solid rgba(255,255
           <div class="istat"><div class="istat-val">ISO</div><div class="istat-label">Certified</div><div class="istat-sub">Quality Management</div></div>
         </div>
         <div class="cap-block">
-          <div class="cap-lbl">Monthly Production Capacity</div>
-          <div class="cap-val">₹1.2 Crore</div>
+          <div class="cap-lbl">Monthly Production</div>
+          <div class="cap-val">100000+</div>
           <div class="cap-sub">Manufacturing turnover capacity per month</div>
           <div class="cap-bar"><div class="cap-bar-fill"></div></div>
         </div>
@@ -921,7 +1151,7 @@ footer{background:#060E1A;padding:56px 4% 24px;border-top:1px solid rgba(255,255
             <div style="font-family:'Space Mono',monospace;font-size:10px;color:#E8500A;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px">Homepage Statistics</div>
             <div class="frow2">
               <div><label style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;display:block;margin-bottom:5px">VMC Machines</label><input type="text" id="c-vmc" placeholder="4"></div>
-              <div><label style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;display:block;margin-bottom:5px">Monthly Capacity</label><input type="text" id="c-cap" placeholder="₹1.2Cr"></div>
+              <div><label style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;display:block;margin-bottom:5px">Monthly Production</label><input type="text" id="c-cap" placeholder="100000+"></div>
             </div>
             <div class="frow2">
               <div><label style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;display:block;margin-bottom:5px">Workforce</label><input type="text" id="c-wf" placeholder="100+"></div>
@@ -969,6 +1199,63 @@ footer{background:#060E1A;padding:56px 4% 24px;border-top:1px solid rgba(255,255
       </div>
     </div>
   </div>
+</div>
+<!-- admin Login page  -->
+<div id="loginModal" class="login-modal">
+<div class="ultra-login">
+
+<button class="close-login" onclick="closeLogin()">✕</button>
+
+<div class="login-left">
+<div class="secure-tag">DIVINESTAMP SECURE CONTROL</div>
+
+<h1>
+ADMIN
+<span>COMMAND CENTER</span>
+</h1>
+
+<p>
+Advanced manufacturing administration portal for
+production intelligence, operations control and quality systems.
+</p>
+
+<div class="signal-box">
+<div class="signal-dot"></div>
+SYSTEM STATUS : SECURE
+</div>
+</div>
+
+
+<div class="login-right">
+
+<div class="glass-shell">
+
+<div class="logo-ring">
+DSPL
+</div>
+
+<h2>AUTHORIZED ACCESS</h2>
+
+<div class="field">
+<label>USERNAME</label>
+<input id="adminUser" type="text" placeholder="Admin ID">
+</div>
+
+<div class="field">
+<label>PASSWORD</label>
+<input id="adminPass" type="password" placeholder="••••••••">
+</div>
+
+<button onclick="adminLogin()" class="login-btn">
+ENTER CONTROL PANEL
+</button>
+
+<div id="loginError"></div>
+
+</div>
+
+</div>
+</div>
 </div>
 
 <script>
@@ -1020,7 +1307,7 @@ function initData(){
   else DB.set('process',normalizeProcessData(savedProcess));
   if(!DB.get('enquiries')) DB.set('enquiries',[]);
   if(!DB.get('applications')) DB.set('applications',[]);
-  if(!DB.get('content')) DB.set('content',{vmc:'4',cap:'₹1.2Cr',wf:'100+',pm:'5+'});
+  if(!DB.get('content')) DB.set('content',{vmc:'4',cap:'100000+',wf:'100+',pm:'5+'});
 }
 
 // RENDER PRODUCTS
@@ -1065,7 +1352,7 @@ function renderJobs(){
 
 // RENDER CONTENT
 function renderContent(){
-  var c = DB.get('content')||{vmc:'4',cap:'₹1.2Cr',wf:'100+',pm:'5+'};
+  var c = DB.get('content')||{vmc:'4',cap:'100000+',wf:'100+',pm:'5+'};
   var hs1=document.getElementById('hs1'),hs2=document.getElementById('hs2'),hs3=document.getElementById('hs3'),hs4=document.getElementById('hs4');
   if(hs1) hs1.textContent=c.vmc;
   if(hs2) hs2.textContent=c.cap;
@@ -1174,7 +1461,7 @@ function renderAdminEnquiries(){
 function saveContent(){
   var c={
     vmc:document.getElementById('c-vmc').value||'4',
-    cap:document.getElementById('c-cap').value||'₹1.2Cr',
+    cap:document.getElementById('c-cap').value||'100000+',
     wf:document.getElementById('c-wf').value||'100+',
     pm:document.getElementById('c-pm').value||'5+'
   };
@@ -1243,13 +1530,37 @@ renderJobs();
 renderContent();
 
 // Pre-fill content admin
-var c=DB.get('content')||{vmc:'4',cap:'₹1.2Cr',wf:'100+',pm:'5+'};
+var c=DB.get('content')||{vmc:'4',cap:'100000+',wf:'100+',pm:'5+'};
 setTimeout(function(){
   var vc=document.getElementById('c-vmc');if(vc)vc.value=c.vmc;
   var cap=document.getElementById('c-cap');if(cap)cap.value=c.cap;
   var wf=document.getElementById('c-wf');if(wf)wf.value=c.wf;
   var pm=document.getElementById('c-pm');if(pm)pm.value=c.pm;
 },100);
+
+function openLogin(){
+document.getElementById("loginModal").classList.add("show");
+}
+
+function closeLogin(){
+document.getElementById("loginModal").classList.remove("show");
+}
+
+function adminLogin(){
+
+let user=document.getElementById("adminUser").value;
+let pass=document.getElementById("adminPass").value;
+
+if(user==="Admin" &&
+pass==="Divinestamp2025"){
+closeLogin();
+openAdmin();
+}
+else{
+alert("Invalid Credentials");
+}
+
+}
 </script>
 </body>
 </html>
